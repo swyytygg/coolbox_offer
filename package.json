@@ -1,0 +1,37 @@
+{
+  "name": "coolbox",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:ui": "vite --config src/ui/style/vite.config.ts",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@supabase/supabase-js": "^2.105.3",
+    "framer-motion": "^12.38.0",
+    "i18next": "^26.3.0",
+    "react": "18",
+    "react-dom": "18",
+    "react-i18next": "^17.0.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "prettier": "^3.4.2",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
+}

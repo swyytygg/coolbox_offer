@@ -1,0 +1,374 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background-color: #191919;
+  color: #ffffff;
+  color-scheme: dark;
+
+  /* Theme Variables - Default to Light */
+  --bg-app: #F9FAFB;
+  --bg-card: #FFFFFF;
+  --bg-inner: #F2F4F6;
+  --text-primary: #191F28;
+  --text-secondary: #4E5968;
+  --border-primary: #E5E8EB;
+
+  /* Layout Tokens */
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+  --header-height: 60px;
+  --footer-height: 60px;
+  --ad-height: 96px;
+  --sandbox-header-height: 0px; /* Default for production */
+
+  /* Button Tokens */
+  --btn-secondary-color: #3182F6; /* Light Mode: Blue (#3000 series) */
+  --point-blue: #3182F6;          /* Light Mode: Blue (#3000 series) */
+}
+
+/* Dark Theme Overrides */
+.theme-dark {
+  --bg-app: #191919;
+  --bg-card: #111111;
+  --bg-inner: #1C1C1E;
+  --text-primary: #FFFFFF;
+  --text-secondary: #D1D6DB;
+  --border-primary: #333333;
+
+  /* Button Tokens */
+  --btn-secondary-color: #FFFFFF; /* Dark Mode: White */
+  --point-blue: #4880EE;          /* Dark Mode: #4000 series blue */
+}
+
+/* 샌드박스(UI 확인용 포트)에서 실행 시 상단 네비바 높이 보정 */
+.sandbox-mode {
+  --sandbox-header-height: 30px;
+}
+
+.app-container {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0 auto;
+  container-type: size;
+}
+
+@media (min-width: 481px) {
+  .app-container {
+    max-width: 420px;
+    max-height: 900px;
+    height: 900px;
+    border-radius: 20px;
+    border: 6px solid #333;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;                /* 여기 줄에 pedding 60px이 있었는데 내가 지웠다고*/
+  background-color: #191919;
+  box-sizing: border-box;
+}
+
+@media (min-width: 481px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000 !important;
+    /* 데스크톱 배경은 더 어둡게 */
+  }
+  #root {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* --- System Auto Theme Detection (prefers-color-scheme: light) --- */
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) {
+    --bg-app: #F2F4F6;
+    --bg-card: #FFFFFF;
+    --bg-inner: #F2F4F6;
+    --text-primary: #191F28;
+    --text-secondary: #4E5968;
+    --border-primary: #E5E8EB;
+    color-scheme: light;
+  }
+  body:not(.dark) {
+    background-color: #F2F4F6 !important;
+  }
+  @media (min-width: 481px) {
+    body:not(.dark) {
+      background-color: #E5E8EB !important;
+    }
+  }
+}
+
+/* --- Manual Theme Switch (.light) Overrides --- */
+html.light,
+body.light,
+.light {
+  --bg-app: #F2F4F6 !important;
+  --bg-card: #FFFFFF !important;
+  --bg-inner: #F2F4F6 !important;
+  --text-primary: #191F28 !important;
+  --text-secondary: #4E5968 !important;
+  --border-primary: #E5E8EB !important;
+  --point-blue: #3182F6 !important;
+  color-scheme: light !important;
+}
+
+body.light {
+  background-color: #F2F4F6 !important;
+}
+@media (min-width: 481px) {
+  body.light {
+    background-color: #E5E8EB !important;
+  }
+}
+
+/* --- System Auto Theme Detection (prefers-color-scheme: dark) --- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --bg-app: #191919;
+    --bg-card: #111111;
+    --bg-inner: #1C1C1E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #D1D6DB;
+    --border-primary: #333333;
+    color-scheme: dark;
+    --btn-secondary-color: #FFFFFF;
+    --point-blue: #4880EE;
+  }
+  body:not(.light) {
+    background-color: #191919 !important;
+  }
+  @media (min-width: 481px) {
+    body:not(.light) {
+      background-color: #000000 !important;
+    }
+  }
+}
+
+/* --- Manual Theme Switch (.dark) Overrides --- */
+html.dark,
+body.dark,
+.dark {
+  --bg-app: #191919 !important;
+  --bg-card: #111111 !important;
+  --bg-inner: #1C1C1E !important;
+  --text-primary: #FFFFFF !important;
+  --text-secondary: #D1D6DB !important;
+  --border-primary: #333333 !important;
+  color-scheme: dark !important;
+  --btn-secondary-color: #FFFFFF !important;
+  --point-blue: #4880EE !important;
+}
+
+body.dark {
+  background-color: #191919 !important;
+}
+@media (min-width: 481px) {
+  body.dark {
+    background-color: #000000 !important;
+  }
+}
+
+/* --- Inline Style Override System --- */
+.light [style*="background-color: #191919"],
+.light [style*="background-color: rgb(25, 25, 25)"] {
+  background-color: var(--bg-app) !important;
+}
+
+.light [style*="background-color: #000"],
+.light [style*="background-color: #000000"],
+.light [style*="background-color: rgb(0, 0, 0)"] {
+  background-color: var(--bg-app) !important;
+}
+
+.light [style*="background-color: #111111"],
+.light [style*="background-color: rgb(17, 17, 17)"] {
+  background-color: var(--bg-card) !important;
+}
+
+.light [style*="background-color: #1C1C1E"],
+.light [style*="background-color: rgb(28, 28, 30)"] {
+  background-color: var(--bg-inner) !important;
+}
+
+.light [style*="color: #FFFFFF"],
+.light [style*="color: rgb(255, 255, 255)"],
+.light [style*="color: #FFF"],
+.light [style*="color: #fff"] {
+  color: var(--text-primary) !important;
+}
+
+.light [style*="color: #D1D6DB"],
+.light [style*="color: rgb(209, 214, 219)"],
+.light [style*="color: #8E8E93"],
+.light [style*="color: rgb(142, 142, 147)"] {
+  color: var(--text-secondary) !important;
+}
+
+.light [style*="border: 2px solid #FFFFFF"],
+.light [style*="border: 2px solid rgb(255, 255, 255)"],
+.light [style*="border: 1.5px solid #FFFFFF"],
+.light [style*="border: 2px solid #ffffff"] {
+  border: 2px solid var(--border-primary) !important;
+}
+
+.light [style*="border-right: 1px solid #D1D6DB"],
+.light [style*="border-right: 1px solid rgb(209, 214, 219)"] {
+  border-right: 1px solid var(--border-primary) !important;
+}
+
+.light [style*="border: 1px solid transparent"] {
+  border: 1px solid var(--border-primary) !important;
+}
+
+/* Only style standard boxed inputs, keep transparent inputs transparent */
+.light input:not([style*="background-color: transparent"]) {
+  background-color: #FFFFFF !important;
+  border: 2px solid var(--border-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.light input[style*="background-color: transparent"] {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+}
+
+.light input[style*="border-bottom"] {
+  border-bottom: 2px solid var(--point-blue) !important;
+}
+
+.light input::placeholder {
+  color: #8B95A1 !important;
+}
+
+/* 품목 추가 서랍(ItemAdd) 컨테이너 및 투명 그리드 박스 라이트모드 덮어쓰기 (브라우저 RGB/RGBA 정규화 지원) */
+.light [style*="background-color: #141414"],
+.light [style*="background-color: rgb(20, 20, 20)"] {
+  background-color: var(--bg-card) !important;
+}
+
+.light [style*="background-color: rgba(0,0,0,0.7)"],
+.light [style*="background-color: rgba(0, 0, 0, 0.7)"] {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.light [style*="background-color: rgba(255,255,255,0.03)"],
+.light [style*="background-color: rgba(255, 255, 255, 0.03)"] {
+  background-color: var(--bg-inner) !important;
+}
+
+.light [style*="background-color: rgba(255,255,255,0.05)"],
+.light [style*="background-color: rgba(255, 255, 255, 0.05)"] {
+  background-color: #E5E8EB !important;
+}
+
+.light [style*="background-color: rgba(255,255,255,0.1)"],
+.light [style*="background-color: rgba(255, 255, 255, 0.1)"] {
+  background-color: #E5E8EB !important;
+}
+
+
+/* 푸터 사이드 버튼 색깔 변경*/
+.light footer svg path[stroke="#FFFFFF"],
+.light footer svg path[stroke="#ffffff"],
+.light footer svg path[stroke="white"] {
+  stroke: var(--point-blue) !important;
+}
+
+/* 중앙 스캔 버튼(+)처럼 button 태그 내부의 아이콘은 흰색으로 유지 */
+.light button svg path[stroke="white"] {
+  stroke: white !important;
+}
+
+/* 🛠️ TSX 수정 없이 CSS만으로 소통창 3개 팝업 및 편지 모달을 라이트모드로 변환 */
+.light [style*="rgba(28, 28, 30, 0.95)"],
+.light [style*="rgba(28,28,30,0.95)"] {
+  background: var(--bg-card) !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.light .character-bubble {
+  color: #191F28 !important;
+}
+
+/* 🛠️ 주버튼 (파란색 배경) 내부 텍스트는 라이트 모드에서도 항상 흰색으로 강제 고정 */
+.light button[style*="var(--point-blue)"],
+.light button[style*="rgb(49, 130, 246)"]:not([style*="transparent"]):not([style*="rgba(0,0,0,0)"]):not([style*="rgba(0, 0, 0, 0)"]),
+.light button[style*="#3182F6"]:not([style*="transparent"]):not([style*="rgba(0,0,0,0)"]):not([style*="rgba(0, 0, 0, 0)"]) {
+  color: #FFFFFF !important;
+}
+
+/* --- Force Dark Mode (for onboarding flow) --- */
+.force-dark,
+.force-dark * {
+  --bg-app: #191919 !important;
+  --bg-card: #111111 !important;
+  --bg-inner: #1C1C1E !important;
+  --text-primary: #FFFFFF !important;
+  --text-secondary: #D1D6DB !important;
+  --border-primary: #FFFFFF !important;
+  color-scheme: dark !important;
+}
+
+/* Force background 000 in force-dark to stay absolute black */
+.light .force-dark [style*="background-color: #000"],
+.light .force-dark [style*="background-color: #000000"],
+.light .force-dark [style*="background-color: rgb(0, 0, 0)"] {
+  background-color: #000000 !important;
+}
+
+/* Keep transparent backgrounds transparent in force-dark */
+.light .force-dark [style*="background-color: rgba(255,255,255,0.03)"],
+.light .force-dark [style*="background-color: rgba(255, 255, 255, 0.03)"] {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+.light .force-dark [style*="background-color: rgba(255,255,255,0.05)"],
+.light .force-dark [style*="background-color: rgba(255, 255, 255, 0.05)"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+.light .force-dark [style*="background-color: rgba(255,255,255,0.1)"],
+.light .force-dark [style*="background-color: rgba(255, 255, 255, 0.1)"] {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Keep input colors white in force-dark */
+.light .force-dark input {
+  color: #FFFFFF !important;
+  background-color: transparent !important;
+  border-color: #FFFFFF !important;
+}
+.light .force-dark input::placeholder {
+  color: #8E8E93 !important;
+}
+
+/* 🛠️ 개발자 소통 플로팅 메뉴 버튼 글자색 테마 강제 연동 */
+.light button.talkroom-menu-btn,
+button.talkroom-menu-btn {
+  color: var(--text-primary) !important;
+}
+
+/* 🛠️ 개발자 소통 모달 타이틀 글자색 강제 고정 */
+h3.talkroom-modal-title {
+  color: var(--point-blue, #3182F6) !important;
+}
